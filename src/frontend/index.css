@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PayFlow — Indigo-Cyan Fintech theme */
+
+/* Figtree — body font */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sora — display/heading font */
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Core palette — deep indigo + electric cyan + amber accent */
+    /* Background: very light cool white */
+    --background: 0.978 0.006 260;
+    /* Foreground: deep indigo-slate */
+    --foreground: 0.18 0.04 265;
+
+    /* Card: pure white with slight blue tint */
+    --card: 0.995 0.003 260;
+    --card-foreground: 0.18 0.04 265;
+
+    --popover: 0.995 0.003 260;
+    --popover-foreground: 0.18 0.04 265;
+
+    /* Primary: vibrant indigo */
+    --primary: 0.45 0.21 270;
+    --primary-foreground: 0.98 0.005 265;
+
+    /* Secondary: soft cyan-teal */
+    --secondary: 0.92 0.03 220;
+    --secondary-foreground: 0.25 0.08 265;
+
+    --muted: 0.94 0.018 255;
+    --muted-foreground: 0.5 0.05 260;
+
+    /* Accent: electric cyan */
+    --accent: 0.78 0.12 205;
+    --accent-foreground: 0.12 0.06 270;
+
+    /* Destructive */
+    --destructive: 0.57 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0.02 255;
+    --input: 0.90 0.025 255;
+    --ring: 0.45 0.21 270;
+
+    /* Brand-specific tokens */
+    --brand-indigo: 0.45 0.21 270;
+    --brand-cyan: 0.72 0.16 205;
+    --brand-amber: 0.78 0.18 70;
+    --brand-emerald: 0.65 0.14 158;
+    --brand-rose: 0.62 0.18 15;
+
+    /* Balance card gradient */
+    --grad-start: 0.38 0.22 275;
+    --grad-end: 0.55 0.18 210;
+
+    --chart-1: 0.45 0.21 270;
+    --chart-2: 0.72 0.16 205;
+    --chart-3: 0.65 0.14 158;
+    --chart-4: 0.78 0.18 70;
+    --chart-5: 0.62 0.18 15;
+
+    --sidebar: 0.995 0.003 260;
+    --sidebar-foreground: 0.18 0.04 265;
+    --sidebar-primary: 0.45 0.21 270;
+    --sidebar-primary-foreground: 0.98 0.005 265;
+    --sidebar-accent: 0.92 0.03 220;
+    --sidebar-accent-foreground: 0.25 0.08 265;
+    --sidebar-border: 0.88 0.02 255;
+    --sidebar-ring: 0.45 0.21 270;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography */
+  h1, h2, h3 {
+    font-family: "Sora", sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Balance gradient card */
+  .balance-card-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--grad-start)) 0%,
+      oklch(0.48 0.2 250) 40%,
+      oklch(var(--grad-end)) 100%
+    );
+  }
+
+  /* Frosted glass effect */
+  .glass {
+    background: oklch(var(--card) / 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid oklch(var(--border));
+  }
+
+  /* Action icon button pill */
+  .action-pill {
+    @apply flex flex-col items-center gap-1.5 cursor-pointer select-none;
+  }
+
+  /* Brand text */
+  .text-brand-indigo { color: oklch(var(--brand-indigo)); }
+  .text-brand-cyan { color: oklch(var(--brand-cyan)); }
+  .text-brand-amber { color: oklch(var(--brand-amber)); }
+  .text-brand-emerald { color: oklch(var(--brand-emerald)); }
+  .text-brand-rose { color: oklch(var(--brand-rose)); }
+
+  .bg-brand-indigo { background-color: oklch(var(--brand-indigo)); }
+  .bg-brand-cyan { background-color: oklch(var(--brand-cyan)); }
+  .bg-brand-amber { background-color: oklch(var(--brand-amber)); }
+  .bg-brand-emerald { background-color: oklch(var(--brand-emerald)); }
+  .bg-brand-rose { background-color: oklch(var(--brand-rose)); }
+
+  /* Subtle dot pattern background */
+  .dot-bg {
+    background-image: radial-gradient(oklch(0.85 0.03 260) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Status badge colors */
+  .status-completed { @apply bg-emerald-100 text-emerald-700; }
+  .status-pending { @apply bg-amber-100 text-amber-700; }
+  .status-failed { @apply bg-red-100 text-red-700; }
+
+  /* Phone frame wrapper */
+  .phone-frame {
+    @apply mx-auto w-full max-w-[430px] min-h-screen flex flex-col relative overflow-hidden;
+    background: oklch(var(--background));
+  }
+
+  /* Scrollable content area above bottom nav */
+  .page-content {
+    @apply flex-1 overflow-y-auto pb-24;
+  }
+
+  /* Hide scrollbar visually but keep scrollable */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
